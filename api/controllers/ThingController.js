@@ -7,12 +7,42 @@
 
 module.exports = {
 
-    createThing: function(req, res) {
+    createStuff: function(req, res) {
 
-        Thing.createThing( { name: 'name2' }, function(err, thing) {
-            if(err) throw new Error('"Thing" Not Saved');
-            return res.ok();
-        });
+        switch(req.params.id) {
+            case 'thing': 
+                        Thing.createThing(req.allParams(), function(err, thing) {
+                            if(err) throw new Error('"Thing" Not Saved');
+                            return res.ok();
+                        });
+                        break;
+            case 'person': 
+                        Thing.createPerson(req.allParams(), function(err, thing) {
+                            if(err) throw new Error('"Person" Not Saved');
+                            return res.ok();
+                        });
+                        break;
+            case 'user': 
+                        Thing.createUser(req.allParams(), function(err, thing) {
+                            if(err) throw new Error('"User" Not Saved');
+                            return res.ok();
+                        });
+                        break;
+            case 'itemlist': 
+                        Thing.createItemList(req.allParams(), function(err, thing) {
+                            if(err) throw new Error('"ItemList" Not Saved');
+                            return res.ok();
+                        });
+                        break;
+            case 'listitem': 
+                        Thing.createListItem(req.allParams(), function(err, thing) {
+                            if(err) throw new Error('"ListItem" Not Saved');
+                            return res.ok();
+                        });
+                        break;
+            default: throw new Error('Unable to create: Unknown Type');
+        };
+
     },
 
 };
