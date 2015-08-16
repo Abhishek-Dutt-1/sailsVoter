@@ -8,7 +8,10 @@
 module.exports = {
 
     attributes: {
-        
+        votedOn  : { model: 'thing' },      // ListItem's Id
+        votedBy  : { model: 'thing' },      // UserId of voter
+        voteType : { type: 'integer', defaultsTo: 1 },  // In case there are more than one types of votes (currently only 1)
+        voteValue: { type: 'integer' }      // +1, -1
     }
 
 };
